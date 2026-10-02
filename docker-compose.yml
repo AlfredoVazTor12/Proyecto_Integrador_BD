@@ -1,1 +1,20 @@
+services:
+  mysql-db:
+    image: mysql:8.0
+    container_name: mysql_control_estudios
+    restart: always
+    environment:
+      # La contraseña debe coincidir exactamente con la que pusiste en tu Java (tu_password)
+      MYSQL_ROOT_PASSWORD: tu_password
+      MYSQL_DATABASE: control_estudios
+    ports:
+      # Mapea el puerto 3306 del contenedor al 3306 de tu computadora (localhost)
+      - "3306:3306"
+    volumes:
+      # 1. Persistencia: Evita que los datos se borren si el contenedor se apaga
+      - mysql_data:/var/lib/mysql
+      # 2. Auto-ejecución: Si colocas tu archivo .sql en la misma carpeta, Docker lo ejecutará al iniciar por primera vez
+      - ./creacion_estructura.sql:/docker-entrypoint-initdb.d/1_init.sql
 
+volumes:
+  mysql_data:
