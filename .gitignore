@@ -1,0 +1,13 @@
+# Java
+*.class
+/bin/
+/target/
+
+# Docker
+/mysql_data/
+.env
+
+# IDEs
+.idea/
+*.iml
+.vscode/
